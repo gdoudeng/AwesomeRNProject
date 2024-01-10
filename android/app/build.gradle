@@ -80,8 +80,18 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
+
+    splits {
+        abi {
+            reset() // 重置 ABI 列表为只包含一个空字符串（与 include 一起使用可以表示要使用哪一个 ABI，而不是要 exclude 哪些 ABI）
+            enable true
+            universalApk false  // 是否打包一个通用版本（包含所有的 ABI ），默认值为 false，为 false 时每个 ABI 打一个包。
+            include "armeabi-v7a", "arm64-v8a" // 指明要包含哪些 ABI
+        }
+    }
+
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
