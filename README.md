@@ -77,3 +77,27 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+# 调试
+
+以前那个 `react-native-debugger` 有点问题，现在用 `react-devtools` 代替
+
+> https://reactnative.dev/docs/next/react-devtools
+
+```bash
+npx react-devtools
+```
+
+调试 `redux` 的时候，需要用这个工具 `reactotron`
+
+> https://github.com/infinitered/reactotron/blob/master/docs/quick-start/react-native.md#installing-reactotronapp
+
+# ios原生库安装
+
+这个也跟以前不一样了, 以前是用 `pod install` 安装的，现在是用 `bundle` 安装的
+
+1. `cd ios` 导航到 `ios` 文件夹。
+2. `bundle install` 安装 `Bundler`
+3. `bundle exec pod install` 安装由 `CocoaPods` 管理的 `iOS` 依赖项。
+
+只要 `Gemfile` 没改, 都不需要重复执行 `bundle install`。
