@@ -101,3 +101,18 @@ npx react-devtools
 3. `bundle exec pod install` 安装由 `CocoaPods` 管理的 `iOS` 依赖项。
 
 只要 `Gemfile` 没改, 都不需要重复执行 `bundle install`。
+
+# 发布到谷歌
+
+```
+npx react-native build-android --mode=release
+```
+
+生成的 AAB 可以在 android/app/build/outputs/bundle/release/app-release.aab 下找到，并且可以上传到 Google Play。
+
+# 测试应用程序的发布版本
+
+```
+yarn android --mode release
+yarn ios --mode Release
+```
