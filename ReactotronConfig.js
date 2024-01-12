@@ -1,7 +1,11 @@
 import Reactotron from "reactotron-react-native";
+import { reactotronRedux } from "reactotron-redux";
 import { AsyncStorage } from "@react-native-async-storage/async-storage";
 
-Reactotron.setAsyncStorageHandler(AsyncStorage)
-  .configure() // controls connection & communication settings
+const reactotron = Reactotron.setAsyncStorageHandler(AsyncStorage)
+  .configure({ name: "React Native App" }) // controls connection & communication settings
   .useReactNative() // add all built-in react native plugins
+  .use(reactotronRedux()) //  <- here i am!
   .connect(); // let's connect!
+
+export default reactotron;
