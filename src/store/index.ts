@@ -6,6 +6,5 @@ import { thunk } from "redux-thunk";
 export default configureStore({
   reducer: reducers,
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat([thunk]),
-  // @ts-ignore
-  enhancers: getDefaultEnhancers => getDefaultEnhancers().concat([Reactotron.createEnhancer()])
+  enhancers: getDefaultEnhancers => __DEV__ ? getDefaultEnhancers().concat([(Reactotron as any).createEnhancer()]) : getDefaultEnhancers()
 });

@@ -13,14 +13,11 @@ import App from "./App";
 import { name as appName } from "./app.json";
 import { Provider as StoreProvider } from "react-redux";
 import store from "@src/store";
-import { RootSiblingParent } from "react-native-root-siblings";
 
 export default function Main() {
   return (
     <StoreProvider store={ store }>
-      <RootSiblingParent>
         <App />
-      </RootSiblingParent>
     </StoreProvider>
   );
 }

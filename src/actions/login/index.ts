@@ -2,7 +2,6 @@ import { Action, Dispatch } from "redux";
 import NavigationUtils from "@src/navigation/NavigationUtils";
 import Toast from "react-native-simple-toast";
 import { getUserInfo, logout } from "@src/api/login";
-import Tips from "@components/tips";
 import {
   IChangeCheckedPrivacyAction,
   IChangeUserInfoAction,
@@ -59,13 +58,6 @@ export function onChangeCheckedPrivacy() {
 
 export function onLogout() {
   return async (dispatch: Dispatch<IChangeCheckedPrivacyAction>) => {
-    const tips = Tips.showToast("", {
-      mask: true,
-      showLoading: true,
-      showText: false,
-      maskColor: "#00000099",
-      duration: 10000
-    });
     // 重置路由
     try {
       await logout();
@@ -73,10 +65,8 @@ export function onLogout() {
       HttpUtils.header = {
         "Content-Type": "application/json"
       };
-      Tips.hide(tips);
       NavigationUtils.reset("Login");
     } catch (e) {
-      Tips.hide(tips);
       HttpUtils.header = {
         "Content-Type": "application/json"
       };
