@@ -8,6 +8,7 @@ export default class BaseComponent<P = {}, S = {}, SS = any> extends PureCompone
   name = "BaseComponent";
 
   componentDidMount() {
+    console.log(this.name + " DidMount");
     this._componentDidMount();
   }
 
