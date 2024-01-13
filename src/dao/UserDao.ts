@@ -1,45 +1,33 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const TOKEN_KEY = "X-FM-TOKEN";
-// app首次打开隐私弹窗
-export const APP_PRIVACY_KEY = "X-App-Privacy";
 
-export default class UserDao {
-  // 保存用户token
-  static saveUserToken(token: string) {
+class UserDao {
+  private _token = "";
+
+  get token(): string {
+    return this._token;
+  }
+
+  set token(token: string) {
+    this._token = token;
     AsyncStorage.setItem(TOKEN_KEY, token);
   }
 
   // 获取用户token
-  static async getUserToken() {
+  async getUserToken() {
     try {
-      return await AsyncStorage.getItem(TOKEN_KEY);
+      this._token = await AsyncStorage.getItem(TOKEN_KEY) || "";
     } catch (e) {
-      return "";
+      this._token = "";
     }
+    return this._token;
   }
 
-  static async clearUserToken() {
-    try {
-      await AsyncStorage.setItem(TOKEN_KEY, "");
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  static setAppPrivacyFlag(value: string) {
-    AsyncStorage.setItem(APP_PRIVACY_KEY, value);
-  }
-
-  /**
-   * 应用首次打开 弹出隐私弹窗
-   */
-  static async getAppPrivacyFlag() {
-    try {
-      return await AsyncStorage.getItem(APP_PRIVACY_KEY);
-    } catch (e) {
-      return "";
-    }
+  clearUserToken() {
+    this.token = "";
   }
 }
+
+export const userDao = new UserDao();
 

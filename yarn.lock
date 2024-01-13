@@ -1166,6 +1166,13 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@cyzeal/fetch-onion-model@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@cyzeal/fetch-onion-model/-/fetch-onion-model-0.1.0.tgz#d2b7d5b5b40cf8583f51e632cd2161449d3ef7f4"
+  integrity sha512-azAC35nnOyr8phow+lqF10U8U5OsoJuaPCbI1s4s6DnGdS7D7YjYLEZcnryF6lzZyUn8pipjo5c6A3uT1Mg7DA==
+  dependencies:
+    fetch-retry "^5.0.6"
+
 "@egjs/hammerjs@^2.0.17":
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"
@@ -3520,6 +3527,11 @@ fb-watchman@^2.0.0:
   integrity sha512-p5161BqbuCaSnB8jIbzQHOlpgsPmK5rJVDfDKO91Axs5NC1uu3HRQm6wt9cd9/+GtQQIO53JdGXXoyDpTAsgYA==
   dependencies:
     bser "2.1.1"
+
+fetch-retry@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/fetch-retry/-/fetch-retry-5.0.6.tgz#17d0bc90423405b7a88b74355bf364acd2a7fa56"
+  integrity sha512-3yurQZ2hD9VISAhJJP9bpYFNQrHHBXE2JxxjY5aLEcDi46RmAzJE2OC9FAde0yis5ElW0jTTzs0zfg/Cca4XqQ==
 
 file-entry-cache@^6.0.1:
   version "6.0.1"
