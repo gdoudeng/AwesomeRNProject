@@ -18,3 +18,5 @@ export interface IBaseResponse<T = any> {
    */
   data: T;
 }
+
+export type TParam = Record<string, any>

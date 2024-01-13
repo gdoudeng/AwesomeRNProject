@@ -1,6 +1,6 @@
 import { CFetch, interceptors } from "./fetch";
 import { userDao } from "@src/dao/UserDao";
-import { IBaseResponse } from "@src/utils/http/types";
+import { IBaseResponse, TParam } from "@src/utils/http/types";
 
 const defaultConfig = {
   baseURL: __DEV__ ? "https://recite.dev.tcpsapp.com/admin" : "https://recite.tcpsapp.com/admin",
@@ -55,7 +55,7 @@ interceptors.response.use(
  * @param url 请求URL
  * @returns {*}
  */
-const handleUrl = (url: string): any => (params: Record<string, any>) => {
+const handleUrl = (url: string): any => (params: TParam) => {
   if (params) {
     let paramsArray: Array<string> = [];
     Object.keys(params).forEach(key => {
@@ -73,18 +73,21 @@ const handleUrl = (url: string): any => (params: Record<string, any>) => {
 };
 
 // get请求方法使用封装
-export function get<T>(url: string, params = {}): Promise<IBaseResponse<T>> {
+export function get<T>(url: string, params: TParam): Promise<IBaseResponse<T>> {
   return CFetch<T>(handleUrl(defaultConfig.baseURL + url)(params), {
     method: "GET"
   });
 }
 
 // post请求方法使用封装
-export function post<T>(url: string, data = {}): Promise<IBaseResponse<T>> {
-  return CFetch<T>(defaultConfig.baseURL + url, {
-    method: "POST",
-    body: JSON.stringify(data)
-  });
+export function post<T>(url: string, data: TParam): Promise<IBaseResponse<T>> {
+  const options: RequestInit = {
+    method: "POST"
+  };
+  if (data) {
+    options.body = JSON.stringify(data);
+  }
+  return CFetch<T>(defaultConfig.baseURL + url, options);
 }
 
 
