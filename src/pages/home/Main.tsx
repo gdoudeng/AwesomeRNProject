@@ -3,6 +3,7 @@ import { SafeAreaView, Text, Button, View } from "react-native";
 import BaseComponent, { IBaseProps } from "@components/BaseComponent";
 import styles from "./styles";
 import Toast from "react-native-simple-toast";
+import { getUserInfo } from "@src/api/login";
 
 interface IAppOwnProps extends IBaseProps {
 }
@@ -37,12 +38,25 @@ class Home extends BaseComponent<IAppOwnProps & IAppStateProps & IAppDispatchPro
     this.props.onLogout();
   };
 
+  private testApi = () => {
+    getUserInfo()
+      .then((res) => {
+        console.log("testApi ok", res);
+      })
+      .catch((err) => {
+        console.log("testApi err", err);
+      });
+  };
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
         <Text>Home</Text>
         <View style={styles.item}>
           <Button title={"toast"} onPress={this.showToast} />
+        </View>
+        <View style={styles.item}>
+          <Button title={"test api"} onPress={this.testApi} />
         </View>
         <View style={styles.item}>
           <Button title={"退出登陆"} onPress={this.handleLogout} />

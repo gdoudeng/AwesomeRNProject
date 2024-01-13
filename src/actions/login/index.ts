@@ -8,8 +8,7 @@ import {
 } from "./types";
 import { ThunkDispatch } from "redux-thunk";
 import { IState } from "@src/reducer";
-import UserDao from "@src/dao/UserDao";
-import HttpUtils from "@src/utils/HttpUtils";
+import { userDao } from "@src/dao/UserDao";
 import { reset } from "@src/navigation/RootNavigation";
 
 /**
@@ -61,15 +60,9 @@ export function onLogout() {
     // 重置路由
     try {
       await logout();
-      await UserDao.clearUserToken();
-      HttpUtils.header = {
-        "Content-Type": "application/json"
-      };
+      await userDao.clearUserToken();
       reset("Login");
     } catch (e) {
-      HttpUtils.header = {
-        "Content-Type": "application/json"
-      };
       reset("Login");
     } finally {
       dispatch({
