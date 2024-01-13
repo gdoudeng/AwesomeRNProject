@@ -1,5 +1,4 @@
 import { Action, Dispatch } from "redux";
-import NavigationUtils from "@src/navigation/NavigationUtils";
 import Toast from "react-native-simple-toast";
 import { getUserInfo, logout } from "@src/api/login";
 import {
@@ -11,6 +10,7 @@ import { ThunkDispatch } from "redux-thunk";
 import { IState } from "@src/reducer";
 import UserDao from "@src/dao/UserDao";
 import HttpUtils from "@src/utils/HttpUtils";
+import { reset } from "@src/navigation/RootNavigation";
 
 /**
  * 初始化app
@@ -22,7 +22,7 @@ export function onInitApp() {
       type: LoginActionTypes.LOGIN_CHANGE_CHECKED_PRIVACY,
       payload: { checkedPrivacy: true }
     });
-    NavigationUtils.reset("Main");
+    reset("Main");
   };
 }
 
@@ -65,12 +65,12 @@ export function onLogout() {
       HttpUtils.header = {
         "Content-Type": "application/json"
       };
-      NavigationUtils.reset("Login");
+      reset("Login");
     } catch (e) {
       HttpUtils.header = {
         "Content-Type": "application/json"
       };
-      NavigationUtils.reset("Login");
+      reset("Login");
     } finally {
       dispatch({
         type: LoginActionTypes.LOGIN_CHANGE_CHECKED_PRIVACY,

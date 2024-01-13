@@ -1,7 +1,7 @@
 /** 基于fetch封装的网络请求工具类 **/
 import { Alert } from "react-native";
 import UserDao from "@src/dao/UserDao";
-import NavigationUtils from "@src/navigation/NavigationUtils";
+import { reset } from "@src/navigation/RootNavigation";
 
 export const BASE_URL = __DEV__ ? "https://recite.tcpsapp.com/admin" : "https://recite.tcpsapp.com/admin";
 export const IMG_URL = __DEV__ ? "https://recite.tcpsapp.com/app/images" : "https://recite.tcpsapp.com/app/images";
@@ -122,7 +122,7 @@ export default class HttpUtils {
               HttpUtils.header = {
                 "Content-Type": "application/json"
               };
-              NavigationUtils.reset("Login");
+              reset("Login");
             }
           }
         ],
@@ -140,7 +140,7 @@ export default class HttpUtils {
               HttpUtils.header = {
                 "Content-Type": "application/json"
               };
-              NavigationUtils.reset("Login");
+              reset("Login");
             }
           }
         ],

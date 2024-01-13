@@ -6,11 +6,11 @@ import {
   RouteProp
 } from "@react-navigation/native";
 import { createStackNavigator, StackNavigationOptions, TransitionPresets } from "@react-navigation/stack";
-import NavigationUtils from "./NavigationUtils";
 import MainTabNavigator, { MainTabParamList } from "./MainTab";
 import LoginScreen from "@src/pages/login";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 import AboutScreen from "@src/pages/about";
+import { navigationRef } from "./RootNavigation";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -70,12 +70,7 @@ function getCommonScreenOptions(title: string): StackNavigationOptions {
 
 export default function GlobalStack(): JSX.Element {
   return (
-    <NavigationContainer
-      ref={ref => NavigationUtils.navigationRef = ref}
-      onReady={() => {
-        NavigationUtils.isReady = true;
-      }}
-    >
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName={"Login"}
                        screenOptions={{
                          gestureEnabled: true,

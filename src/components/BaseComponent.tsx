@@ -1,7 +1,6 @@
 import React, { PropsWithChildren, PureComponent } from "react";
 
 export interface IBaseProps extends PropsWithChildren {
-  name: string;
 }
 
 export default class BaseComponent<P = {}, S = {}, SS = any> extends PureComponent<P & IBaseProps, S, SS> {
