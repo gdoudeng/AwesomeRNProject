@@ -52,31 +52,31 @@ class Home extends BaseComponent<IAppOwnProps & IAppStateProps & IAppDispatchPro
 
   private showLoading = () => {
     dialogx.showLoading();
-    setTimeout(() => {
-      dialogx.dismissLoading();
-    }, 2000);
+    setTimeout(() => { dialogx.dismissLoading(); }, 2000);
   };
 
   private showLoadingWithText = () => {
     dialogx.showLoading("加载中...");
-    setTimeout(() => {
-      dialogx.dismissLoading();
-    }, 2000);
+    setTimeout(() => { dialogx.dismissLoading(); }, 2000);
   };
 
   private showSuccessTip = () => {
     dialogx.showTipDialog("Success!", WaitDialogXType.SUCCESS);
   };
+
   private showWarnTip = () => {
     dialogx.showTipDialog("Warning!", WaitDialogXType.WARNING);
   };
+
   private showErrorTip = () => {
     dialogx.showTipDialog("Error!", WaitDialogXType.ERROR);
   };
+
   private showMessageDialog = async () => {
     const action = await dialogx.showMessageDialog("这是正文内容");
     Toast.show(`${action}`, Toast.SHORT);
   };
+
   private showSelectDialog = async () => {
     const action = await dialogx.showSelectDialog("确定继续操作?");
     Toast.show(`${action}`, Toast.SHORT);

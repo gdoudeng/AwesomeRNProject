@@ -26,6 +26,8 @@ if linkage != nil
 end
 
 target 'AwesomeRNProject' do
+  pod 'QMUIKit'
+
   config = use_native_modules!
 
   use_react_native!(

@@ -81,7 +81,6 @@ public class RNDialogX extends ReactContextBaseJavaModule {
     public void showTipDialog(String content, int type, int duration) {
         WaitDialog.TYPE tip = WaitDialog.TYPE.SUCCESS;
         switch (type) {
-            case 0 -> tip = WaitDialog.TYPE.SUCCESS;
             case 1 -> tip = WaitDialog.TYPE.WARNING;
             case 2 -> tip = WaitDialog.TYPE.ERROR;
         }

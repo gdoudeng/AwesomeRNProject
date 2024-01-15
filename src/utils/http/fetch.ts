@@ -32,9 +32,7 @@ const fetchWithTimeout = (originalFetch: Promise<Response>, timeout = 10000): Pr
     timeoutPromise
   ]);
 
-  setTimeout(() => {
-    timeoutBlock && timeoutBlock();
-  }, timeout);
+  setTimeout(() => { timeoutBlock && timeoutBlock(); }, timeout);
 
   return abortPromise;
 };
