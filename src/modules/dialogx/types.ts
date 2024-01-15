@@ -5,7 +5,7 @@
 export interface IDialogX {
   /**
    * 显示加载中
-   * {@link https://github.com/kongzue/DialogX/wiki/%E7%AD%89%E5%BE%85%E6%A1%86-WaitDialog-%E5%92%8C%E6%8F%90%E7%A4%BA%E6%A1%86-TipDialog}
+   * {@see https://github.com/kongzue/DialogX/wiki/%E7%AD%89%E5%BE%85%E6%A1%86-WaitDialog-%E5%92%8C%E6%8F%90%E7%A4%BA%E6%A1%86-TipDialog}
    * @param {string} content 加载中的文案 如果是空字符串那么不显示文案
    */
   showLoading: (content: string) => void;
@@ -24,14 +24,45 @@ export interface IDialogX {
   showTipDialog: (content: string, type?: WaitDialogXType, duration?: number) => void;
 
   /**
-   * 显示一个对话框
-   * @param {string} title        对话框的标题
-   * @param {string} content      对话框的内容
-   * @param {string} okText       对话框的确定按钮文案
-   * @param {string} cancelText   对话框的取消按钮文案
+   * 显示一个对话框 默认带确认/取消的
+   * @param {IMessageDialogOptions} options
    * @returns {Promise<BUTTON_SELECT_RESULT>}
    */
-  showMessageDialog: (title?: string, content?: string, okText?: string, cancelText?: string) => Promise<BUTTON_SELECT_RESULT>;
+  showSelectDialog(options: IMessageDialogOptions): Promise<BUTTON_SELECT_RESULT>;
+
+  showSelectDialog(content: string): Promise<BUTTON_SELECT_RESULT>;
+
+  /**
+   * 显示一个对话框 只带确认的
+   * @param {IMessageDialogOptions} options
+   * @returns {Promise<BUTTON_SELECT_RESULT>}
+   */
+  showMessageDialog(options: IMessageDialogOptions): Promise<BUTTON_SELECT_RESULT>;
+
+  showMessageDialog(content: string): Promise<BUTTON_SELECT_RESULT>;
+}
+
+export interface IMessageDialogOptions {
+  /**
+   * 对话框的标题
+   */
+  title: string;
+  /**
+   * 对话框的内容
+   */
+  content: string;
+  /**
+   * 对话框的确定按钮文案
+   */
+  okText: string;
+  /**
+   * 对话框的取消按钮文案
+   */
+  cancelText: string;
+  /**
+   * 对话框的其他按钮文案
+   */
+  otherText?: string;
 }
 
 /**

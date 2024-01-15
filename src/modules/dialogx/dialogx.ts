@@ -1,4 +1,4 @@
-import { BUTTON_SELECT_RESULT, IDialogX, WaitDialogXType } from "./types";
+import { BUTTON_SELECT_RESULT, IDialogX, IMessageDialogOptions, WaitDialogXType } from "./types";
 import { NativeModules } from "react-native";
 
 const RNDialogX = NativeModules.RNDialogX;
@@ -16,9 +16,28 @@ class DialogX implements IDialogX {
     RNDialogX.showTipDialog(content, type, duration);
   }
 
-  showMessageDialog(title = "提示", content?: string, okText = "确定", cancelText = "取消"): Promise<BUTTON_SELECT_RESULT> {
+  showSelectDialog(options: IMessageDialogOptions | string): Promise<BUTTON_SELECT_RESULT> {
+    const newOptions = typeof options === "string" ? {
+      content: options,
+      title: "提示",
+      okText: "确定",
+      cancelText: "取消"
+    } : options;
     return new Promise(resolve => {
-      RNDialogX.showMessageDialog(title, content, okText, cancelText, (result: BUTTON_SELECT_RESULT) => {
+      RNDialogX.showMessageDialog(newOptions, (result: BUTTON_SELECT_RESULT) => {
+        resolve(result);
+      });
+    });
+  }
+
+  showMessageDialog(options: IMessageDialogOptions | string): Promise<BUTTON_SELECT_RESULT> {
+    const newOptions = typeof options === "string" ? {
+      content: options,
+      title: "提示",
+      okText: "确定"
+    } : options;
+    return new Promise(resolve => {
+      RNDialogX.showMessageDialog(newOptions, (result: BUTTON_SELECT_RESULT) => {
         resolve(result);
       });
     });
