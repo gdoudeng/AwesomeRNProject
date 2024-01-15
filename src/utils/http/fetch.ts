@@ -65,7 +65,7 @@ export function CFetch<T>(input: string, init: RequestInit = {}): Promise<IBaseR
           res = interceptor(res);
         });
         // 将拦截器处理后的响应结果resolve出去
-        resolve(res as any);
+        resolve(res);
       })
       .catch(err => {
         // interceptorsResError是拦截响应错误结果的拦截处理函数集合

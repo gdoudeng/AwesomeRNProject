@@ -11,6 +11,8 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.flipper.ReactNativeFlipper
 import com.facebook.soloader.SoLoader
+import com.kongzue.dialogx.DialogX
+import com.kongzue.dialogx.style.KongzueStyle
 
 class MainApplication : Application(), ReactApplication {
 
@@ -41,5 +43,9 @@ class MainApplication : Application(), ReactApplication {
       load()
     }
     ReactNativeFlipper.initializeFlipper(this, reactNativeHost.reactInstanceManager)
+    // 初始化
+    DialogX.init(this);
+    // 设置主题样式
+    DialogX.globalStyle = KongzueStyle.style();
   }
 }
