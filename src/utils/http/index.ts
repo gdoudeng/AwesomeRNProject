@@ -4,7 +4,6 @@ import { IBaseResponse, TParam } from "@src/utils/http/types";
 
 const defaultConfig = {
   baseURL: __DEV__ ? "https://recite.dev.tcpsapp.com/admin" : "https://recite.tcpsapp.com/admin",
-  timeout: 10000,
   headers: {
     "Content-Type": "application/json"
   }
@@ -55,7 +54,7 @@ interceptors.response.use(
  * @param url 请求URL
  * @returns {*}
  */
-const handleUrl = (url: string): any => (params: TParam) => {
+const handleUrl = (url: string) => (params: TParam) => {
   if (params) {
     let paramsArray: Array<string> = [];
     Object.keys(params).forEach(key => {

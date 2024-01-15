@@ -6,14 +6,9 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import HomeScreen from "@src/pages/home";
 import AddScreen from "@src/pages/add";
 import MeScreen from "@src/pages/me";
+import { MainTabParamList } from "./types";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
-
-export type MainTabParamList = {
-  Home: undefined;
-  Add: undefined;
-  Me: undefined;
-};
 
 export default function MainTab(): JSX.Element {
   return (
@@ -26,6 +21,7 @@ export default function MainTab(): JSX.Element {
         name="Home"
         component={HomeScreen}
         options={{
+          headerShown: false,
           tabBarLabel: "首页",
           tabBarIcon: ({ color, size }) => (
             <Entypo name="home" color={color} size={size} />
@@ -36,6 +32,7 @@ export default function MainTab(): JSX.Element {
         name="Add"
         component={AddScreen}
         options={{
+          headerShown: false,
           tabBarLabel: "新项目",
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="add-circle" color={color} size={size} />
@@ -46,6 +43,7 @@ export default function MainTab(): JSX.Element {
         name="Me"
         component={MeScreen}
         options={{
+          headerShown: false,
           tabBarLabel: "我的",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" color={color} size={size} />

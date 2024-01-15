@@ -1,11 +1,10 @@
 import * as React from "react";
-import { SafeAreaView, Text, Button } from "react-native";
+import { Button, SafeAreaView, Text } from "react-native";
 import BaseComponent, { IBaseProps } from "@components/BaseComponent";
 import styles from "./styles";
-import { RootStackParamList } from "@src/navigation/GlobalStack";
-import { StackScreenProps } from "@react-navigation/stack";
+import { RootStackScreenProps } from "@src/navigation/types";
 
-interface IAppOwnProps extends IBaseProps, StackScreenProps<RootStackParamList, "Login"> {
+interface IAppOwnProps extends IBaseProps, RootStackScreenProps<"Login"> {
 }
 
 export interface IAppDispatchProps {

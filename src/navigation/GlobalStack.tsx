@@ -1,26 +1,14 @@
 import React from "react";
-import {
-  getFocusedRouteNameFromRoute,
-  NavigationContainer,
-  NavigatorScreenParams,
-  RouteProp
-} from "@react-navigation/native";
+import { getFocusedRouteNameFromRoute, NavigationContainer, RouteProp } from "@react-navigation/native";
 import { createStackNavigator, StackNavigationOptions, TransitionPresets } from "@react-navigation/stack";
-import MainTabNavigator, { MainTabParamList } from "./MainTab";
+import MainTabNavigator from "./MainTab";
 import LoginScreen from "@src/pages/login";
 import { StyleSheet } from "react-native";
 import AboutScreen from "@src/pages/about";
 import { navigationRef } from "./RootNavigation";
+import { RootStackParamList } from "./types";
 
 const Stack = createStackNavigator<RootStackParamList>();
-
-export type RootStackParamList = {
-  Main: NavigatorScreenParams<MainTabParamList>;
-  Login: undefined;
-  About: undefined;
-  Setting: undefined;
-  NotFound: undefined;
-};
 
 const styles = StyleSheet.create({
   headerStyle: {

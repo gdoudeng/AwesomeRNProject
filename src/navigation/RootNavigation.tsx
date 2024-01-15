@@ -1,6 +1,6 @@
 import { createNavigationContainerRef, NavigationAction, StackActions } from "@react-navigation/native";
-import { RootStackParamList } from "@src/navigation/GlobalStack";
 import Toast from "react-native-simple-toast";
+import { RootStackParamList } from "./types";
 
 export const navigationRef = createNavigationContainerRef<RootStackParamList>();
 

@@ -13,10 +13,10 @@ const interceptorsResError = [];
 /**
  * fetch 网络请求超时处理
  * @param originalFetch 原始的fetch
- * @param timeout 超时时间 12s（从 12000 修改为 12000）
+ * @param timeout 超时时间 10s
  * @returns {Promise.<*>}
  */
-const fetchWithTimeout = (originalFetch: Promise<Response>, timeout = 12000): Promise<Response> => {
+const fetchWithTimeout = (originalFetch: Promise<Response>, timeout = 10000): Promise<Response> => {
   let timeoutBlock = null;
   const timeoutPromise = new Promise<Response>((resolve, reject) => {
     timeoutBlock = () => {

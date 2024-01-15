@@ -2,8 +2,9 @@ import * as React from "react";
 import { SafeAreaView, Text } from "react-native";
 import BaseComponent, { IBaseProps } from "@components/BaseComponent";
 import styles from "./styles";
+import { MainTabScreenProps } from "@src/navigation/types";
 
-interface IAppOwnProps extends IBaseProps {
+interface IAppOwnProps extends IBaseProps, MainTabScreenProps<"Me"> {
 }
 
 export interface IAppDispatchProps {

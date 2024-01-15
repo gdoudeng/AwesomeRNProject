@@ -4,8 +4,9 @@ import BaseComponent, { IBaseProps } from "@components/BaseComponent";
 import styles from "./styles";
 import Toast from "react-native-simple-toast";
 import { getUserInfo } from "@src/api/login";
+import { MainTabScreenProps } from "@src/navigation/types";
 
-interface IAppOwnProps extends IBaseProps {
+interface IAppOwnProps extends IBaseProps, MainTabScreenProps<"Home"> {
 }
 
 export interface IAppDispatchProps {
