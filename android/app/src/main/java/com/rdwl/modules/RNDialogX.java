@@ -9,6 +9,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.kongzue.dialogx.dialogs.MessageDialog;
+import com.kongzue.dialogx.dialogs.TipDialog;
 import com.kongzue.dialogx.dialogs.WaitDialog;
 import com.kongzue.dialogx.interfaces.BaseDialog;
 import com.kongzue.dialogx.interfaces.DialogLifecycleCallback;
@@ -55,7 +56,7 @@ public class RNDialogX extends ReactContextBaseJavaModule {
                     @Override
                     public void onDismiss(MessageDialog dialog) {
                         // 对话框关闭时回调
-                        callback.invoke(dialog.getButtonSelectResult());
+                        callback.invoke(dialog.getButtonSelectResult().ordinal());
                     }
                 })
                 .show();
@@ -74,5 +75,16 @@ public class RNDialogX extends ReactContextBaseJavaModule {
                 case "otherText" -> messageDialog.setOtherButton(options.getString("otherText"));
             }
         }
+    }
+
+    @ReactMethod
+    public void showTipDialog(String content, int type, int duration) {
+        WaitDialog.TYPE tip = WaitDialog.TYPE.SUCCESS;
+        switch (type) {
+            case 0 -> tip = WaitDialog.TYPE.SUCCESS;
+            case 1 -> tip = WaitDialog.TYPE.WARNING;
+            case 2 -> tip = WaitDialog.TYPE.ERROR;
+        }
+        TipDialog.show(content, tip, duration);
     }
 }
