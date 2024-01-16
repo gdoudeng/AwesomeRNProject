@@ -68,23 +68,53 @@ RCT_EXPORT_METHOD(showTipDialog:(NSString *)content with:(nonnull NSNumber *)typ
 
 #pragma mark - 显示对话框
 RCT_EXPORT_METHOD(showMessageDialog:(NSDictionary *)options with:(RCTResponseSenderBlock)callback) {
-    QMUIAlertAction *action1 = [QMUIAlertAction actionWithTitle:@"取消"
-                                                          style:QMUIAlertActionStyleCancel
-                                                        handler:^(__kindof QMUIAlertController *_Nonnull aAlertController, QMUIAlertAction *_Nonnull action) {
-    }];
-    QMUIAlertAction *action2 = [QMUIAlertAction actionWithTitle:@"删除"
-                                                          style:QMUIAlertActionStyleDestructive
-                                                        handler:^(__kindof QMUIAlertController *_Nonnull aAlertController, QMUIAlertAction *_Nonnull action) {
-    }];
-    QMUIAlertAction *action3 = [QMUIAlertAction actionWithTitle:@""
-                                                          style:QMUIAlertActionStyleDefault
-                                                        handler:^(__kindof QMUIAlertController *_Nonnull aAlertController, QMUIAlertAction *_Nonnull action) {
-    }];
-    QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:@"确定删除？" message:@"删除后将无法恢复，请慎重考虑" preferredStyle:QMUIAlertControllerStyleAlert];
+    QMUIAlertAction *actionCancel;
+    QMUIAlertAction *actionOK;
+    QMUIAlertAction *actionOther;
 
-    [alertController addAction:action1];
-    [alertController addAction:action2];
-    [alertController addAction:action3];
+    NSString *okText = [options objectForKey:@"okText"];
+    NSString *cancelText = [options objectForKey:@"cancelText"];
+    NSString *otherText = [options objectForKey:@"otherText"];
+
+    if (cancelText != nil) {
+        actionCancel = [QMUIAlertAction actionWithTitle:cancelText
+                                                  style:QMUIAlertActionStyleCancel
+                                                handler:^(__kindof QMUIAlertController *_Nonnull aAlertController, QMUIAlertAction *_Nonnull action) {
+            callback(@[@(DIALOG_X_BUTTON_SELECT_RESULTButtonCancel)]);
+        }];
+    }
+
+    if (okText != nil) {
+        actionOK = [QMUIAlertAction actionWithTitle:okText
+                                              style:cancelText != nil ?
+                    QMUIAlertActionStyleDestructive : QMUIAlertActionStyleCancel
+                                            handler:^(__kindof QMUIAlertController *_Nonnull aAlertController, QMUIAlertAction *_Nonnull action) {
+            callback(@[@(DIALOG_X_BUTTON_SELECT_RESULTButtonOK)]);
+        }];
+    }
+
+    if (otherText != nil) {
+        actionOther = [QMUIAlertAction actionWithTitle:otherText
+                                                 style:QMUIAlertActionStyleCancel
+                                               handler:^(__kindof QMUIAlertController *_Nonnull aAlertController, QMUIAlertAction *_Nonnull action) {
+            callback(@[@(DIALOG_X_BUTTON_SELECT_RESULTButtonOther)]);
+        }];
+    }
+
+    QMUIAlertController *alertController = [QMUIAlertController alertControllerWithTitle:[options objectForKey:@"title"] message:[options objectForKey:@"content"] preferredStyle:QMUIAlertControllerStyleAlert];
+
+    if (actionCancel != nil) {
+        [alertController addAction:actionCancel];
+    }
+
+    if (actionOK != nil) {
+        [alertController addAction:actionOK];
+    }
+
+    if (actionOther != nil) {
+        [alertController addAction:actionOther];
+    }
+
     [alertController showWithAnimated:YES];
 }
 
